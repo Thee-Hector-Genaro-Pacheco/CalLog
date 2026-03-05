@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { graphql } from "graphql";
+import { ruruHTML } from "ruru/server";
 
 import { env } from "./config/env";
 import { schema } from "./graphql/schema";
@@ -23,6 +24,10 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/healthz", (_req, res) => res.json({ ok: true }));
+
+app.get("/graphql", (_req, res) => {
+    res.type("html").send(ruruHTML({ endpoint: "/graphql" }));
+});
 
 app.post("/graphql", async (req, res) => {
     const { query, variables, operationName } = req.body ?? {};
