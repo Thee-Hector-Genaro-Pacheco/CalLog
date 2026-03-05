@@ -13,7 +13,9 @@ app.use(
 
 app.use(express.json());
 
-app.get("/healthz", (_req, res) => res.json({ ok: true }));
+app.get("/", (_req, res) => {
+  res.send("CalLog API is running. Try /healthz (and later /graphql).");
+});
 
 app.listen(env.PORT, () => {
     console.log(`[api] http://localhost:${env.PORT}`);
