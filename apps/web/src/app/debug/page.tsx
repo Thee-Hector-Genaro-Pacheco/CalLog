@@ -1,6 +1,7 @@
 "use client";
 
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client/react";
+import { gql } from "@apollo/client";
 
 const HEALTH_QUERY = gql`
   query Health {
@@ -24,7 +25,7 @@ export default function DebugPage() {
         <div style={{ padding: 24 }}>
             <h1>CalLog Debug</h1>
             <p>
-                <strong>health:</strong> {data?.health}
+                <strong>health:</strong> {(data as any)?.health}
             </p>
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
